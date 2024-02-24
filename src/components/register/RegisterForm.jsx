@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useAuth } from "../../contexts/authContext";
 import { registerUser } from "../../firebase/auth";
 import { Navigate } from "react-router-dom";
@@ -6,6 +6,7 @@ import { faEye, faEyeSlash } from "@fortawesome/free-regular-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 const RegisterForm = () => {
+    const [name, setName] = useState("");
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [confirmPassword, setConfirmPassword] = useState("");
@@ -66,6 +67,13 @@ const RegisterForm = () => {
                     className="flex flex-col justify-center items-center"
                     onSubmit={handleSubmit}
                 >
+                    <div className="my-5">
+                        <input 
+                            type="text"
+                            className="border-2 p-3 rounded-2xl w-64 text-xl" 
+                            placeholder="Enter your Name..." 
+                            onChange={(e) => setName(e.target.value)}/>
+                    </div>
                     <div className="my-5">
                         <input 
                             type="text"

@@ -10,7 +10,9 @@ const HomePage = () => {
             {!userLoggedIn && (<Navigate to={"/login"} replace={true} />)}
             <div>
                 <Navbar />
-                <CreateList />
+                <div className="flex justify-center items-center mt-48">
+                    <CreateList />
+                </div>
             </div>
         </>
     )
