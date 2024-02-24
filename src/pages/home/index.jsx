@@ -1,4 +1,5 @@
-import LogoutBtn from "../../components/home/LogoutBtn";
+import Navbar from "../../components/home/Navbar";
+import CreateList from "../../components/home/createList";
 import { useAuth } from "../../contexts/authContext";
 import {Navigate, useNavigate} from "react-router-dom"
 
@@ -8,8 +9,8 @@ const HomePage = () => {
         <>
             {!userLoggedIn && (<Navigate to={"/login"} replace={true} />)}
             <div>
-                HOME PAGE
-                <LogoutBtn />
+                <Navbar />
+                <CreateList />
             </div>
         </>
     )
