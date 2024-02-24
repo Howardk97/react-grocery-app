@@ -34,6 +34,7 @@ const LoginForm = () => {
                     </div>
                     <div className="my-5">
                         <input 
+                            type="password"
                             className="border-2 p-3 rounded-2xl w-64 text-xl" 
                             placeholder="Enter your Password..." 
                             onChange={(e) => setPassword(e.target.value)}

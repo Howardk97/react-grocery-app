@@ -49,7 +49,7 @@ const RegisterForm = () => {
                     </div>
                     <div className="my-5">
                         <input 
-                            type="text"
+                            type="password"
                             className="border-2 p-3 rounded-2xl w-64 text-xl" 
                             placeholder="Enter your Password..." 
                             onChange={(e) => setPassword(e.target.value)}
@@ -57,7 +57,7 @@ const RegisterForm = () => {
                     </div>
                     <div className="my-5">
                         <input 
-                            type="text"
+                            type="password"
                             className="border-2 p-3 rounded-2xl w-64 text-xl" 
                             placeholder="Confirm your Password..."
                             onChange={(e) => setConfirmPassword(e.target.value)}
