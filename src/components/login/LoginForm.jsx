@@ -2,6 +2,8 @@ import { useState } from "react";
 import { signInUser } from "../../firebase/auth";
 import { useAuth } from "../../contexts/authContext";
 import { Navigate } from "react-router-dom";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faEye, faEyeSlash } from "@fortawesome/free-regular-svg-icons";
 
 const LoginForm = () => {
     const { userLoggedIn } = useAuth();
@@ -9,6 +11,8 @@ const LoginForm = () => {
     const[email, setEmail] = useState("");
     const[password, setPassword] = useState("")
     const [isSigningIn, setIsSigningIn] = useState("");
+    const [passwordType, setPasswordType] = useState("password");
+    const [passwordLogo, setPasswordLogo] = useState(faEye)
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -19,11 +23,21 @@ const LoginForm = () => {
         }
     }
 
+    const handleHideShowPassword = () => {
+        if(passwordType === "password") {
+            setPasswordType("text");
+            setPasswordLogo(faEyeSlash);
+        } else {
+            setPasswordType("password");
+            setPasswordLogo(faEye);
+        }
+    }
+
     return(
         <div>
             {userLoggedIn && (<Navigate to={"/home"} replace={true} />)}
             <div className="border-2 py-20 px-5 rounded-3xl backdrop-blur-2xl">
-                <p className="text-5xl text-zinc-600 font-bold mb-5">Grocery List App</p>
+                <p className="text-5xl text-white font-bold mb-5">Grocery List App</p>
                 <form className="flex flex-col justify-center items-center" onSubmit={handleSubmit}>
                     <div className="my-5">
                         <input 
@@ -33,8 +47,14 @@ const LoginForm = () => {
                         />
                     </div>
                     <div className="my-5">
+                        <div 
+                            className="w-56 py-3 absolute translate-x-full"
+                            onClick={handleHideShowPassword}
+                        >
+                            <FontAwesomeIcon icon={passwordLogo}/>
+                        </div>
                         <input 
-                            type="password"
+                            type={passwordType}
                             className="border-2 p-3 rounded-2xl w-64 text-xl" 
                             placeholder="Enter your Password..." 
                             onChange={(e) => setPassword(e.target.value)}
