@@ -8,7 +8,7 @@ const HomePage = () => {
     return (
         <>
             {!userLoggedIn && (<Navigate to={"/login"} replace={true} />)}
-            <div>
+            <div className="bg-gradient-to-r from-yellow-500 to-orange-600 min-h-screen">
                 <Navbar />
                 <div className="flex justify-center items-center mt-48">
                     <CreateList />

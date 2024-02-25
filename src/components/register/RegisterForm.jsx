@@ -4,9 +4,11 @@ import { registerUser } from "../../firebase/auth";
 import { Navigate } from "react-router-dom";
 import { faEye, faEyeSlash } from "@fortawesome/free-regular-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { collection, getDocs, addDoc } from "firebase/firestore";
+import { db } from "../../firebase/firebase";
 
 const RegisterForm = () => {
-    const [name, setName] = useState("");
+    const [newName, setNewName] = useState("");
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [confirmPassword, setConfirmPassword] = useState("");
@@ -16,8 +18,25 @@ const RegisterForm = () => {
     const [confirmPasswordType, setConfirmPasswordType] = useState("password");
     const [passwordLogo, setPasswordLogo] = useState(faEye);
     const [confirmPasswordLogo, setConfirmPasswordLogo] = useState(faEye);
+    const [users, setUsers] = useState([]);
+
+    const usersCollectionRef = collection(db, "users");
 
     const { userLoggedIn } = useAuth();
+
+    const createUser = async () => {
+        await addDoc(usersCollectionRef, {name: newName});
+    }
+
+    useEffect(() => {
+        const getUsers = async () => {
+            const data = await getDocs(usersCollectionRef);
+            console.log("USER DATA: ", data);
+            setUsers(data.docs.map((doc) => ({...doc.data(), id: doc.id})));
+        }
+
+        getUsers();
+    }, [])
 
     const handleHideShowPassword = () => {
         if(passwordType === "password") {
@@ -72,7 +91,7 @@ const RegisterForm = () => {
                             type="text"
                             className="border-2 p-3 rounded-2xl w-64 text-xl" 
                             placeholder="Enter your Name..." 
-                            onChange={(e) => setName(e.target.value)}/>
+                            onChange={(e) => setNewName(e.target.value)}/>
                     </div>
                     <div className="my-5">
                         <input 
@@ -110,7 +129,7 @@ const RegisterForm = () => {
                         />
                     </div>
                     <div className="mt-5">
-                        <button className="border-2 p-3 rounded-2xl bg-cyan-400 bg-opacity-100 text-xl hover:bg-cyan-300 active:bg-cyan-300 text-white w-64" type="submit">SIGN IN</button>
+                        <button className="border-2 p-3 rounded-2xl bg-cyan-400 bg-opacity-100 text-xl hover:bg-cyan-300 active:bg-cyan-300 text-white w-64" type="submit" onClick={createUser}>SIGN IN</button>
                     </div>
                 </form>
                 <div className="flex justify-center">

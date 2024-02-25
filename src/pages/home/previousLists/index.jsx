@@ -1,12 +1,13 @@
 import Navbar from "../../../components/home/Navbar";
+import PreviousLists from "../../../components/home/previousLists";
 
-const PreviousLists = () => {
+const PreviousListsPage = () => {
     return(
-        <div>
+        <div className="bg-gradient-to-r from-yellow-500 to-orange-600 h-screen">
             <Navbar />
-            <h1>PREVIOUS LISTS</h1>
+            <PreviousLists />
         </div>
     )
 }
 
-export default PreviousLists;
+export default PreviousListsPage;

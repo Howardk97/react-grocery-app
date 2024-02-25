@@ -61,11 +61,11 @@ const LoginForm = () => {
                         />
                     </div>
                     <div className="mt-5">
-                        <button className="border-2 p-3 rounded-2xl bg-cyan-400 bg-opacity-100 text-xl hover:bg-cyan-300 active:bg-cyan-300 text-white w-64" type="submit">LOGIN</button>
+                        <button className="border-2 p-3 rounded-2xl bg-teal-400 bg-opacity-100 text-xl hover:bg-teal-300 active:bg-teal-300 text-white w-64" type="submit">LOGIN</button>
                     </div>
                 </form>
                 <div className="flex justify-center">
-                    <p className="text-white text-xl mt-10">Don't have an account? <a href="/register" className="font-bold hover:underline hover:text-cyan-400 active:underline active:text-cyan-400">Sign Up!</a></p>
+                    <p className="text-white text-xl mt-10">Don't have an account? <a href="/register" className="font-bold hover:underline hover:text-teal-500">Sign Up!</a></p>
                 </div>
             </div>
         </div>
