@@ -25,7 +25,7 @@ const RegisterForm = () => {
     const { userLoggedIn } = useAuth();
 
     const createUser = async () => {
-        await addDoc(usersCollectionRef, {name: newName});
+        await addDoc(usersCollectionRef, {name: newName, email: email});
     }
 
     useEffect(() => {
@@ -129,11 +129,17 @@ const RegisterForm = () => {
                         />
                     </div>
                     <div className="mt-5">
-                        <button className="border-2 p-3 rounded-2xl bg-cyan-400 bg-opacity-100 text-xl hover:bg-cyan-300 active:bg-cyan-300 text-white w-64" type="submit" onClick={createUser}>SIGN IN</button>
+                        <button 
+                            className="border-2 p-3 rounded-2xl bg-teal-400 bg-opacity-100 text-xl hover:bg-teal-300 text-white w-64" 
+                            type="submit" 
+                            onClick={createUser}
+                        >
+                            SIGN IN
+                        </button>
                     </div>
                 </form>
                 <div className="flex justify-center">
-                    <p className="text-white text-xl mt-10">Already have an account? <a href="/login" className="font-bold hover:underline active:underline hover:text-cyan-400 active:text-cyan-400">Login!</a></p>
+                    <p className="text-white text-xl mt-10">Already have an account? <a href="/login" className="font-bold hover:underline hover:text-teal-300">Login!</a></p>
                 </div>
                 <div className="flex justify-center">
                     <p className="text-red-500 font-bold">{errorMsg}</p>

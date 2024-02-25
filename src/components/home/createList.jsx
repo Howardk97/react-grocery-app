@@ -5,12 +5,15 @@ import { collection, getDocs, addDoc } from "firebase/firestore"
 
 const CreateList = () => {
     const [listItems, setListItems] = useState([]);
+    const [users, setUsers] = useState([]);
     const [newItem, setNewItem] = useState("");
+    const [name, setName] = useState("");
     const listItemsCollectionRef = collection(db, "groceryList");
+    const usersCollectionRef = collection(db, "users");
     
     const { currentUser } = useAuth();
 
-    console.log("LIST ITEMS: ", listItems);
+    // console.log("LIST ITEMS: ", listItems);
 
     const createItem = async () => {
         await addDoc(listItemsCollectionRef, {item: newItem})
@@ -20,8 +23,8 @@ const CreateList = () => {
     useEffect(() => {
         const getListItems =  async () => {
             const data = await getDocs(listItemsCollectionRef);
-            console.log("DATA: ", data)
             setListItems(data.docs.map((doc) => ({...doc.data(), id: doc.id})));
+            // console.log("LIST ITEMS: ", listItems)
         }
 
         getListItems();
@@ -29,7 +32,7 @@ const CreateList = () => {
 
     return (
         <div className="flex flex-col">
-            <h1 className="text-5xl text-white">Welcome {currentUser.email}, add a grocery item</h1>
+            <h1 className="text-5xl text-white">Welcome! Add a grocery item</h1>
             <div className="flex my-10">
                 <input 
                     className="p-2 border-2 rounded-xl mx-5 w-full text-2xl" 

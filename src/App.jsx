@@ -4,6 +4,7 @@ import RegisterPage from './pages/register'
 import PreviousListsPage from './pages/home/previousLists'
 import { AuthProvider } from './contexts/authContext';
 import { useRoutes } from 'react-router-dom'
+import AccountPage from './pages/account';
 
 export default function App() {
   const routesArray = [
@@ -24,12 +25,16 @@ export default function App() {
       element: <HomePage />
     },
     {
-      path: "/home/create-list",
+      path: "/create-list",
       element: <HomePage />
     },
     {
-      path: "/home/previous-lists",
+      path: "/previous-lists",
       element: <PreviousListsPage />
+    },
+    {
+      path: "/account",
+      element: <AccountPage />
     }
   ]
   let routesElement = useRoutes(routesArray);
