@@ -14,7 +14,7 @@ function Dropdown () {
     return (
         <div className="relative mx-auto">
             <div 
-                className="mx-2 py-3.5 px-5 bg-gray-700 bg-opacity-40 justify-between text-white cursor-pointer flex items-center w-48 rounded-xl text-2xl" 
+                className="mx-2 py-3.5 px-5 bg-gray-700 bg-opacity-40 justify-between text-white cursor-pointer flex items-center w-48 rounded-xl text-2xl border-2" 
                 onClick={toggleBtn}
             >
                 <h1 className="font-bold">Category</h1>
