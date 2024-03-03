@@ -3,9 +3,12 @@ import { db } from "../../firebase/firebase";
 import { collection, getDocs, addDoc } from "firebase/firestore"
 import Dropdown from "./Dropdown"
 
+console.log("Get Category ")
+
 const CreateList = () => {
     const [listItems, setListItems] = useState([]);
     const [newItem, setNewItem] = useState("");
+    const [newCategory, setNewCategory] = useState("");
     const [isClicked, setIsClicked] = useState(false);
     const [isClickedIndex, setIsClickedIndex] = useState(0);
     const [isItemCrossed, setIsItemCrossed] = useState();
@@ -17,6 +20,13 @@ const CreateList = () => {
         await addDoc(listItemsCollectionRef, {item: newItem})
         location.reload();
     }
+
+    const getCategory = (category) => {
+        console.log("SELECTED CATEGORY: ", category);
+        setNewCategory(category);
+    }
+
+    console.log("CURRENT CATEGORY: ", newCategory)
 
     useEffect(() => {
         const getListItems =  async () => {
@@ -49,7 +59,7 @@ const CreateList = () => {
                         setNewItem(e.target.value)
                     }} 
                 />
-                <Dropdown />
+                <Dropdown onClick={getCategory}/>
                 <button 
                     className="border-2 bg-teal-500 opactiy-40 p-2 rounded-xl text-white hover:bg-teal-400 text-2xl font-bold mx-2"
                     onClick={createItem}
@@ -64,7 +74,7 @@ const CreateList = () => {
                         <div key={listItem.id}>
                             <div className="rounded-xl p-3 text-2xl w-96 text-white" onClick={handleClick}>
                                 <div className="flex">
-                                    <p>- </p> 
+                                    <p> - </p> 
                                     <p className="pl-2">{listItem.item}</p>
                                 </div>
                             </div>

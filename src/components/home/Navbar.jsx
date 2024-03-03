@@ -20,7 +20,7 @@ const Navbar = () => {
         }
     ]
     return(
-        <div className="fixed top-0 left-0 min-w-full">
+        <div className="fixed top-0 left-0 min-w-full z-10">
             <div className="flex bg-gray-700 bg-opacity-40 backdrop-blur-2xl p-3">
                 <div className="flex items-center">
                     <h1 className="text-white text-5xl mr-20">LOGO</h1>

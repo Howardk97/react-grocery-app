@@ -2,8 +2,9 @@ import { faAngleDown, faAngleUp } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useState } from "react";
 
-function Dropdown () {
+function Dropdown (props) {
     const [isActive, setIsActive] = useState(false);
+    const [newCategory, setNewCategory] = useState("");
 
     const toggleBtn = () => {
         setIsActive(!isActive);
@@ -11,8 +12,16 @@ function Dropdown () {
 
     const items = ["Produce", "Dairy", "Canned", "Pasta", "Bread", "Meat", "Snacks", "Frozen"];
 
+    const handleDropdownItemClick = (e) => {
+        setNewCategory(e.target.textContent);
+    }
+
+    const handleClick = () => {
+        props.onClick(newCategory)
+    }
+
     return (
-        <div className="relative mx-auto">
+        <div className="relative mx-auto z-0" onClick={handleClick}>
             <div 
                 className="mx-2 py-3.5 px-5 bg-gray-700 bg-opacity-40 justify-between text-white cursor-pointer flex items-center w-48 rounded-xl text-2xl border-2" 
                 onClick={toggleBtn}
@@ -28,7 +37,11 @@ function Dropdown () {
                 <div className="absolute top-[100%] p-2.5 bg-white text-gray-600 mx-2 mt-0 w-48 rounded-xl">
                     {items.map((item, index) => {
                         return (
-                            <div key={index} className="dropdown-item p-2.5 hover:bg-gray-700 hover:bg-opacity-40 hover:text-white cursor-pointer transition-all text-xl">
+                            <div 
+                                key={index} 
+                                className="dropdown-item p-2.5 hover:bg-gray-700 hover:bg-opacity-40 hover:text-white cursor-pointer transition-all text-xl"
+                                onClick={handleDropdownItemClick}
+                            >
                                 {item}
                             </div>
                         )
